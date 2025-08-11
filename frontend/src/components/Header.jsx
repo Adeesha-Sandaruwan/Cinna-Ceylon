@@ -1,14 +1,7 @@
-
 import React, { useState } from 'react';
 import { FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
-import logo from '../assets/logo.png';
+import logo from '../assets/images/logo.png';
 
-// Cinnamon-inspired color palette
-const CINNAMON_BROWN = '#A0522D';
-const CINNAMON_ORANGE = '#D2691E';
-const CINNAMON_CREAM = '#FFF8E7';
-
-// Only the required navigation links
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
@@ -16,114 +9,123 @@ const navLinks = [
   { name: 'Contact Us', href: '/contact' },
 ];
 
-function Header() {
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartCount] = useState(0); // Placeholder for cart logic
 
   return (
-  <header className="sticky top-0 z-50 shadow-lg backdrop-blur-md" style={{ background: '#8B4513', color: '#fff', fontFamily: 'Inter, Segoe UI, Arial, sans-serif', boxShadow: '0 4px 24px rgba(112,45,30,0.10)' }}>
-      {/* Semantic nav element for accessibility */}
-  <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Main navigation">
-        {/* Logo on the left */}
-  <a href="/" className="flex items-center focus:outline-none focus:ring-2 focus:ring-white" aria-label="CinnaCeylon Home">
-          <img
-            src={logo}
-            alt="CinnaCeylon Logo"
-            className="h-20 md:h-24 w-auto drop-shadow-xl transition-transform duration-300 hover:scale-105"
-            style={{ maxHeight: 110, display: 'block', filter: 'drop-shadow(0 4px 22px rgba(255,255,255,0.18))' }}
-          />
+    <header className="w-full bg-[#8B4513] text-white sticky top-0 shadow-md z-50">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+        {/* Logo */}
+        <a href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+          <img src={logo} alt="Logo" className="h-12 w-auto" />
+          <span className="font-bold text-xl tracking-wide hidden sm:block">CinnaCeylon</span>
         </a>
-        {/* Navigation links in the center (desktop) */}
-  <div className="hidden md:flex items-center space-x-6">
+        {/* Nav Links (Desktop) */}
+        <div className="hidden md:flex gap-6 text-lg font-medium">
           {navLinks.map(link => (
             <a
               key={link.name}
               href={link.href}
-              className="px-6 py-2 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 shadow-md tracking-wide"
-              style={{ color: '#8B4513', background: '#fff', margin: '0 0.25rem', letterSpacing: '0.04em' }}
-              onMouseOver={e => { e.currentTarget.style.background = '#F7E8D3'; e.currentTarget.style.color = '#D47E30'; }}
-              onMouseOut={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#8B4513'; }}
-              aria-label={link.name}
+              className="hover:text-[#FFD700] transition-colors duration-200"
             >
               {link.name}
             </a>
           ))}
         </div>
-        {/* Right side: search, cart, profile */}
-  <div className="flex items-center space-x-4">
-          {/* Search Bar (optional, can be removed if not needed) */}
-          <form className="hidden sm:flex" role="search" aria-label="Site search">
+        {/* Search + Icons */}
+        <div className="flex items-center gap-4">
+          {/* Search Bar */}
+          <form className="hidden sm:flex flex items-center bg-white rounded-full px-3 py-1 shadow-inner">
             <input
-              type="search"
+              type="text"
               placeholder="Search..."
-              className="rounded-l px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white"
-              style={{ border: '1px solid #fff', background: '#fff', color: '#8B4513', fontFamily: 'inherit' }}
-              aria-label="Search"
+              className="bg-transparent outline-none text-sm text-gray-700 placeholder-gray-400"
             />
-            <button type="submit" className="px-4 py-2 rounded-r font-semibold focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 shadow-md"
-              style={{ background: '#8B4513', color: 'white', fontFamily: 'inherit' }} aria-label="Submit search"
-              onMouseOver={e => e.currentTarget.style.background = '#D47E30'}
-              onMouseOut={e => e.currentTarget.style.background = '#8B4513'}>
+            <button
+              type="submit"
+              className="bg-[#FFD700] text-black rounded-full px-3 py-1 hover:bg-yellow-400 transition"
+            >
               Search
             </button>
           </form>
-          {/* Cart Icon */}
-          <button className="relative focus:outline-none focus:ring-2 focus:ring-white transition-transform duration-200 hover:scale-110" aria-label="View cart">
-            <FaShoppingCart className="text-2xl" style={{ color: '#fff' }} />
-            {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">{cartCount}</span>
-            )}
+          {/* Icons */}
+          <button className="p-2 rounded-full hover:bg-[#A0522D] transition" aria-label="Cart">
+            <FaShoppingCart size={22} />
           </button>
-          {/* Login/Profile */}
-          <button className="focus:outline-none focus:ring-2 focus:ring-white transition-transform duration-200 hover:scale-110" aria-label="Login or profile">
-            <FaUserCircle className="text-2xl" style={{ color: '#fff' }} />
+          <button className="p-2 rounded-full hover:bg-[#A0522D] transition" aria-label="Profile">
+            <FaUserCircle size={22} />
           </button>
-          {/* Hamburger menu for mobile */}
+          {/* Hamburger (Mobile) */}
           <button
-            className={`md:hidden ml-2 focus:outline-none focus:ring-2 focus:ring-white transition-transform duration-200 ${menuOpen ? 'rotate-90 scale-110' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
+            className="md:hidden p-2 rounded hover:bg-[#A0522D] transition"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
           >
-            {menuOpen ? <FaTimes className="text-3xl" style={{ color: '#fff', transition: 'color 0.2s' }} /> : <FaBars className="text-3xl" style={{ color: '#fff', transition: 'color 0.2s' }} />}
+            <FaBars size={22} />
           </button>
         </div>
       </nav>
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <nav className="md:hidden px-4 py-2 space-y-2" style={{ background: '#8B4513' }} role="menu" aria-label="Mobile navigation">
+      {/* Mobile Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-[#8B4513] text-white flex flex-col gap-6 p-6 transform transition-transform duration-300 ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        } z-50`}
+        style={{ boxShadow: menuOpen ? '-2px 0 16px rgba(0,0,0,0.15)' : 'none' }}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <a href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+            <img src={logo} alt="Logo" className="h-10 w-auto" />
+            <span className="font-bold text-lg tracking-wide">CinnaCeylon</span>
+          </a>
+          <button
+            className="p-2 rounded hover:bg-[#A0522D] transition"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <FaTimes size={22} />
+          </button>
+        </div>
+        <div className="flex flex-col gap-4">
           {navLinks.map(link => (
             <a
               key={link.name}
               href={link.href}
-              className="block px-2 py-2 rounded font-medium focus:outline-none focus:ring-2 focus:ring-white"
-              style={{ color: '#8B4513', background: '#fff', margin: '0.25rem 0', letterSpacing: '0.04em' }}
-              onMouseOver={e => { e.currentTarget.style.background = '#F7E8D3'; e.currentTarget.style.color = '#D47E30'; }}
-              onMouseOut={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#8B4513'; }}
-              aria-label={link.name}
+              className="hover:text-[#FFD700] transition-colors duration-200 text-lg"
               onClick={() => setMenuOpen(false)}
             >
               {link.name}
             </a>
           ))}
-          {/* Optional: search bar in mobile menu */}
-          <form className="flex mt-2" role="search" aria-label="Site search">
-            <input
-              type="search"
-              placeholder="Search..."
-              className="rounded-l px-2 py-1 focus:outline-none focus:ring-2 focus:ring-white w-full"
-              style={{ border: '1px solid #fff', background: '#fff', color: '#8B4513' }}
-              aria-label="Search"
-            />
-            <button type="submit" className="px-3 py-1 rounded-r font-medium focus:outline-none focus:ring-2 focus:ring-white"
-              style={{ background: '#8B4513', color: 'white' }} aria-label="Submit search">
-              Search
-            </button>
-          </form>
-        </nav>
+        </div>
+        <form className="flex items-center bg-white rounded-full px-3 py-1 shadow-inner mt-4">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="bg-transparent outline-none text-sm text-gray-700 placeholder-gray-400 flex-1"
+          />
+          <button
+            type="submit"
+            className="bg-[#FFD700] text-black rounded-full px-3 py-1 hover:bg-yellow-400 transition"
+          >
+            Search
+          </button>
+        </form>
+        <div className="flex items-center gap-4 mt-6">
+          <button className="p-2 rounded-full hover:bg-[#A0522D] transition" aria-label="Cart">
+            <FaShoppingCart size={22} />
+          </button>
+          <button className="p-2 rounded-full hover:bg-[#A0522D] transition" aria-label="Profile">
+            <FaUserCircle size={22} />
+          </button>
+        </div>
+      </div>
+      {/* Overlay for mobile menu */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 z-40"
+          onClick={() => setMenuOpen(false)}
+        />
       )}
     </header>
   );
 }
-
-export default Header;
