@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaShoppingCart, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../assets/images/logo.png';
 
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
+  { name: 'Wholesale', href: '/wholesale' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact Us', href: '/contact' },
 ];
@@ -16,20 +18,20 @@ export default function Header() {
     <header className="w-full bg-[#8B4513] text-white sticky top-0 shadow-md z-50">
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+        <Link to="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
           <img src={logo} alt="Logo" className="h-12 w-auto" />
           <span className="font-bold text-xl tracking-wide hidden sm:block">CinnaCeylon</span>
-        </a>
+        </Link>
         {/* Nav Links (Desktop) */}
         <div className="hidden md:flex gap-6 text-lg font-medium">
           {navLinks.map(link => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="hover:text-[#FFD700] transition-colors duration-200"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
         {/* Search + Icons */}
@@ -73,10 +75,10 @@ export default function Header() {
         style={{ boxShadow: menuOpen ? '-2px 0 16px rgba(0,0,0,0.15)' : 'none' }}
       >
         <div className="flex items-center justify-between mb-4">
-          <a href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+          <Link to="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
             <img src={logo} alt="Logo" className="h-10 w-auto" />
             <span className="font-bold text-lg tracking-wide">CinnaCeylon</span>
-          </a>
+          </Link>
           <button
             className="p-2 rounded hover:bg-[#A0522D] transition"
             onClick={() => setMenuOpen(false)}
@@ -87,14 +89,14 @@ export default function Header() {
         </div>
         <div className="flex flex-col gap-4">
           {navLinks.map(link => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="hover:text-[#FFD700] transition-colors duration-200 text-lg"
               onClick={() => setMenuOpen(false)}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
         <form className="flex items-center bg-white rounded-full px-3 py-1 shadow-inner mt-4">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BeakerIcon, GlobeAltIcon, LockClosedIcon, SparklesIcon } from '@heroicons/react/24/outline';
 import Carousel from './Carousel';
 import AnimatedSection from './AnimatedSection';
@@ -71,12 +72,12 @@ function HomePage() {
                     Explore Collection
                   </a>
 
-                  <a
-                    href="/about"
+                  <Link
+                    to="/about"
                     className="inline-block px-6 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 transition"
                   >
                     Our Story
-                  </a>
+                  </Link>
                 </div>
 
                 {/* quick trust badges */}
@@ -99,32 +100,31 @@ function HomePage() {
             <div>
             
               <p className="mt-4 text-gray-700 leading-relaxed">
-                CinnaCeylon is a family-run spice company based in Sri Lanka. We focus on authentic Ceylon cinnamon (Cinnamomum verum),
-                hand-processed and sun-dried to preserve natural oils and aroma. Below are the pillars we follow:
+              Cinna Ceylon is a supply chain management system designed to support Sri Lanka’s authentic Ceylon cinnamon
               </p>
 
               <ul className="mt-6 space-y-3 text-gray-700">
                 <li>
-                  <strong>Provenance:</strong> Single-origin sourcing from smallholder farms in the highlands — traceable and transparent.
+                  <strong>Provenance:</strong>Single-origin traceability from smallholder farms in the central highlands — ensuring authenticity and transparency at every stage.
                 </li>
                 <li>
-                  <strong>Processing:</strong> Hand-peeled and slow-dried to retain essential oils and delicate flavor.
+                  <strong>Processing:</strong> Digital tracking of cinnamon harvesting, peeling, and drying practices to maintain quality standards and preserve natural value.
                 </li>
                 <li>
-                  <strong>Quality:</strong> Batch-tested for purity — we avoid cassia mixing and prioritize aroma & taste.
+                  <strong>Quality:</strong> Data-driven monitoring and batch verification to prevent cassia mixing, ensuring product integrity, aroma, and flavor.
                 </li>
                 <li>
-                  <strong>Community:</strong> Fair prices for growers and investments into local sustainability.
+                  <strong>Community:</strong> Empowering farmers through fair trade, transparent records, and tools that promote sustainable agricultural practices.
                 </li>
               </ul>
 
-              <a
-                href="/about"
+              <Link
+                to="/about"
                 className="mt-6 inline-block px-6 py-3 rounded-full text-white font-medium"
                 style={{ backgroundColor: COLORS.DEEP_CINNAMON }}
               >
                 Learn more about our process
-              </a>
+              </Link>
             </div>
 
             {/* Visual + quick facts */}
