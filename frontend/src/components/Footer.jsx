@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import logo from '../assets/images/logo.png';
 
 const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
+  { name: 'Wholesale', href: '/wholesale' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact Us', href: '/contact' },
 ];
@@ -24,13 +26,13 @@ export default function Footer() {
         <div className="flex flex-col gap-3">
           <h2 className="text-lg font-semibold border-b border-[#FFD700] pb-2">Quick Links</h2>
           {quickLinks.map(link => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="bg-white text-[#8B4513] rounded-full px-4 py-2 hover:bg-[#FFD700] hover:text-black transition"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
         {/* Contact + Social */}
